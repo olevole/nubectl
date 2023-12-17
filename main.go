@@ -98,7 +98,7 @@ func main() {
 		sshKey = *ssh_key
 	} else {
 		// sshKey: get from env(1)
-		sshKey = os.Getenv("SSHKEY")
+		sshKey = os.Getenv("SSH_KEY")
 	}
 
 	if len(cloudUrl) < 2 {
@@ -140,7 +140,7 @@ func main() {
 		divertConfig(apitoken)
 	} else if command == "ssh" {
 		if len(cloudUrl) < 2 {
-			fmt.Printf("no such SSHKEY env or --ssh_key\n")
+			fmt.Printf("no such SSH_KEY env or --ssh_key\n")
 			os.Exit(1)
 		}
 		if len(os.Args) == 3 {

@@ -180,6 +180,7 @@ func sshResource(name string, keyID string) {
 	}
 	defer response.Body.Close()
 
+
 	body, _ := ioutil.ReadAll(response.Body)
 	decoder := json.NewDecoder(strings.NewReader(string(body)))
 
@@ -193,7 +194,7 @@ func sshResource(name string, keyID string) {
 		}
 		md, _ := m.(map[string]interface{})
 
-		value, exists := md["instanceid"]
+		value, exists := md["id"]
 		// In case when key is not present in map variable exists will be false.
 		if exists {
 			//fmt.Printf("key exists in map: %t, value: %v \n", exists, value)
@@ -212,12 +213,14 @@ func sshResource(name string, keyID string) {
 				fmt.Printf("%s@%s -p %d\n", ssh_user, ssh_host, port)
 				doSSH(sshKeyPath, username, hostname, port)
 			}
+		} else {
+			fmt.Printf("Resource not exist\n")
 		}
 	}
 }
 
 // interactive build/select list via promptui.Select
-// from getStatus -> instanceid name
+// from getStatus -> id name
 func sshSelectResource(keyID string) {
 	//wip
 }

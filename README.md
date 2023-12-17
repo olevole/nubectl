@@ -7,7 +7,7 @@
 Download the repo, compile the code for your platform.
 
 ```bash
-$ git clone https://github.com/bitcoin-software/nubectl
+$ git clone https://github.com/cbsd/nubectl
 $ cd nubectl
 $ ./build.sh
 $ mv nubectl/nubectl /usr/local/bin/nubectl
@@ -16,7 +16,7 @@ $ mv nubectl/nubectl /usr/local/bin/nubectl
 
 Alternatively, to install to $GOPATH:
 ```bash
-$ go install github.com/bitcoin-software/nubectl@latest
+$ go install github.com/cbsd/nubectl@latest
 ```
 
 ## Usage
@@ -30,6 +30,7 @@ via env(1):
 ```bash
 $ export CLOUD_URL="https://your-cbsd-api.endpoint.com"
 $ export CLOUD_KEY="/path/to/your/ssh/key.pub"
+$ export CLOUD_SSH="/path/to/your/ssh/id_ed2559"      # (optional, for SSH only )
 $ nubectl --help
 ```
 
@@ -40,10 +41,14 @@ $ nubectl --cloud_url https://your-cbsd-api.endpoint.com --cloud_key /path/to/yo
 $ nubectl -cloud_url=https://your-cbsd-api.endpoint.com -cloud_key=/path/to/your/ssh/key.pub
 ```
 
-### with [bitclouds](https://bitclouds.sh)
+### Create VM or container
 ```bash
-$ export CLOUD_KEY="/path/to/your/ssh/key.pub"
-$ nubectl --help
+$ nubectl create vm test1
+$ nubectl create container test2
+$ nubectl status
+$ nubectl list test1
+$ nubectl ssh test1
+$ nubectl destroy test1
 ```
 
 ### Infrastructure as a Code

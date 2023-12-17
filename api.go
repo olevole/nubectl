@@ -30,7 +30,7 @@ func createJail(disksize string, key string, name string) {
 		"pubkey": "` + key + `"
 	}`)
 
-	fmt.Println(string(jsonData))
+//	fmt.Println(string(jsonData))
 
 	request, error := http.NewRequest("POST", httpposturl, bytes.NewBuffer(jsonData))
 	request.Header.Set("Content-Type", "application/json; charset=UTF-8")
@@ -56,12 +56,12 @@ func createVM(image string, cores int, ramsize string, disksize string, key stri
 	var jsonData = []byte(`{
 		"imgsize": "` + disksize + `",
 		"ram": "` + ramsize + `",
-		"cpus": "` + strconv.Itoa(cores) + `",
+		"cpus": ` + strconv.Itoa(cores) + `,
 		"image": "` + image + `",
 		"pubkey": "` + key + `"
 	}`)
 
-	//fmt.Println(string(jsonData))
+	fmt.Println(string(jsonData))
 
 	request, error := http.NewRequest("POST", httpposturl, bytes.NewBuffer(jsonData))
 	request.Header.Set("Content-Type", "application/json; charset=UTF-8")
